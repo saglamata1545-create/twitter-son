@@ -59,7 +59,7 @@ export const TaskConfigPanel: React.FC<TaskConfigPanelProps> = ({
             quoteTexts: newText.split('\n').map(s => s.trim()).filter(Boolean)
         }));
         addLog(`${generated.length} adet yeni alıntı metni üretildi.`, 'success');
-        setAiContext(''); // Clear context input
+        setAiContext('');
     } catch (e) {
         addLog('AI servisine bağlanılamadı veya bir hata oluştu.', 'error');
     } finally {
@@ -70,7 +70,6 @@ export const TaskConfigPanel: React.FC<TaskConfigPanelProps> = ({
   return (
     <div className="bg-slate-800 rounded-xl border border-slate-700 p-6 shadow-lg flex flex-col gap-6">
       
-      {/* Header */}
       <div className="flex justify-between items-center border-b border-slate-700 pb-4">
         <h2 className="text-xl font-bold text-white flex items-center gap-2">
           <Settings size={20} className="text-purple-400" />
@@ -95,10 +94,8 @@ export const TaskConfigPanel: React.FC<TaskConfigPanelProps> = ({
         )}
       </div>
 
-      {/* Inputs Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-full">
         
-        {/* Left: Targets */}
         <div className="flex flex-col gap-2">
             <label className="text-sm font-medium text-slate-300 flex items-center gap-2">
                 <LinkIcon size={16} className="text-blue-400"/>
@@ -108,7 +105,7 @@ export const TaskConfigPanel: React.FC<TaskConfigPanelProps> = ({
                 value={linksInput}
                 onChange={(e) => handleLinksChange(e.target.value)}
                 disabled={isRunning}
-                placeholder="https://twitter.com/user/status/123...&#10;https://x.com/user/status/456..."
+                placeholder="https://twitter.com/user/status/123..."
                 className="flex-1 bg-slate-900 border border-slate-700 rounded-lg p-3 text-xs font-mono text-slate-300 focus:outline-none focus:border-purple-500 resize-none min-h-[150px]"
             />
             <div className="text-xs text-slate-500 text-right">
@@ -116,7 +113,6 @@ export const TaskConfigPanel: React.FC<TaskConfigPanelProps> = ({
             </div>
         </div>
 
-        {/* Right: Texts & AI */}
         <div className="flex flex-col gap-2">
             <div className="flex justify-between items-center">
                 <label className="text-sm font-medium text-slate-300 flex items-center gap-2">
@@ -129,11 +125,10 @@ export const TaskConfigPanel: React.FC<TaskConfigPanelProps> = ({
                 value={quotesInput}
                 onChange={(e) => handleQuotesChange(e.target.value)}
                 disabled={isRunning}
-                placeholder="Harika bir tespit!&#10;Buna kesinlikle katılmıyorum.&#10;Çok doğru..."
+                placeholder="Metin 1&#10;Metin 2&#10;Metin 3..."
                 className="flex-1 bg-slate-900 border border-slate-700 rounded-lg p-3 text-xs font-mono text-slate-300 focus:outline-none focus:border-purple-500 resize-none min-h-[150px]"
             />
             
-            {/* AI Generator Mini-Section */}
             <div className="bg-slate-700/30 p-2 rounded-lg border border-slate-700 flex gap-2 items-center">
                 <input 
                     type="text" 
@@ -158,10 +153,9 @@ export const TaskConfigPanel: React.FC<TaskConfigPanelProps> = ({
         </div>
       </div>
 
-      {/* Settings Row */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 border-t border-slate-700">
         <div>
-            <label className="block text-xs text-slate-400 mb-1">Tweet Başına İşlem</label>
+            <label className="block text-xs text-slate-400 mb-1">Tweet Başına Adet</label>
             <input 
                 type="number" 
                 min="1"
@@ -190,9 +184,9 @@ export const TaskConfigPanel: React.FC<TaskConfigPanelProps> = ({
                 className="w-full bg-slate-900 border border-slate-700 rounded p-2 text-sm text-white"
             />
         </div>
-        <div className="flex items-end pb-1">
-             <span className="text-xs text-slate-500 italic">
-                *İşlemler "Simülasyon" modundadır.
+        <div className="flex items-end pb-1 justify-end">
+             <span className="text-xs text-green-500 font-bold">
+                GERÇEK OTOMASYON AKTİF
              </span>
         </div>
       </div>
